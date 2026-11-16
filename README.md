@@ -30,17 +30,17 @@ It follows the provided Figma design (`docs/design/`) and works on desktop, tabl
 
 ## Features
 
-| Area       | What you can do                                                                                    |
-| ---------- | -------------------------------------------------------------------------------------------------- |
-| Tasks      | Create, edit (modal), delete (confirmation dialog), move between statuses from the card menu       |
-| Filters    | Status tabs (All / To Do / In Progress / Done), priority, assignee                                 |
-| Search     | Real-time search on title and description (debounced, in the header)                               |
-| Dashboard  | Statistics cards (total, completed, in progress, overdue) and a Kanban-style board                 |
-| Tasks page | The same tasks and filters in a table                                                              |
-| Analytics  | Doughnut chart by priority, bar chart by status (Chart.js), recent activity feed                   |
-| Team       | Mocked user list with open / done / overdue counts and a shortcut to their tasks                   |
-| UX         | Skeleton loading, error state with retry, snackbars, card animations, hover states from the design |
-| i18n       | English and Arabic with a language switch, right-to-left layout for Arabic                         |
+| Area       | What you can do                                                                                                         |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Tasks      | Create, edit (modal), delete (confirmation dialog), drag & drop between columns to change status (or use the card menu) |
+| Filters    | Status tabs (All / To Do / In Progress / Done), priority, assignee                                                      |
+| Search     | Real-time search on title and description (debounced, in the header)                                                    |
+| Dashboard  | Statistics cards (total, completed, in progress, overdue) and a Kanban-style board                                      |
+| Tasks page | The same tasks and filters in a table                                                                                   |
+| Analytics  | Doughnut chart by priority, bar chart by status (Chart.js), recent activity feed                                        |
+| Team       | Mocked user list with open / done / overdue counts and a shortcut to their tasks                                        |
+| UX         | Skeleton loading, error state with retry, snackbars, card animations, hover states from the design                      |
+| i18n       | English and Arabic with a language switch, right-to-left layout for Arabic                                              |
 
 ---
 
@@ -144,6 +144,10 @@ Example from the dashboard:
 />
 ```
 
+### Drag & drop
+
+`TaskBoard` uses Angular CDK (`cdkDropListGroup`, `cdkDropList`, `cdkDrag`). Each column's drop list carries its status, so a drop into another column emits the same `statusChange` event the card menu uses, and the store saves it. The board stays presentational. On touch screens a short long-press starts the drag, so the page can still scroll.
+
 ### Dependency injection
 
 - `inject()` instead of constructor parameters.
@@ -238,6 +242,7 @@ Production build: about 176 kB transferred for the initial load; each page is a 
 
 - Semantic HTML (`header`, `nav`, `main`, `article`, lists, headings), a skip-to-content link, `aria-current` on the active link, `aria-pressed` on filter tabs, labels on all icon buttons.
 - Keyboard: everything is reachable with Tab; dialogs trap focus (Material); visible focus outlines.
+- Drag & drop needs a mouse or touch, so every card also has a **Move to …** menu that works with the keyboard and screen readers.
 - Charts have a visually hidden text list with the same numbers for screen readers.
 - `prefers-reduced-motion` turns animations off.
 - ESLint template accessibility rules are on.
@@ -296,7 +301,7 @@ Other edge cases: empty columns and empty table messages, search with no results
 
 - Data lives in memory: changes are lost on page reload (could persist with `localStorage` or a real API).
 - Calendar and Settings are placeholders; they are in the design but not in the requirements.
-- Drag & drop between columns (optional in the brief) is not implemented; status can be changed from the card menu instead.
+- Drag & drop changes the status only. Reordering inside a column is turned off because the data has no position field, so a custom order could not be saved (and is unclear while filters hide some cards).
 - Filters are not saved in the URL yet (query params would make filtered views shareable).
 - The change labels on the stat cards (`+12 this week`) come from a static API and are not calculated.
 - Next steps: e2e tests (Playwright), dark mode, CI pipeline, Docker.
