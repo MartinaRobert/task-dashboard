@@ -1,0 +1,25 @@
+<div class="shell" [dir]="language.direction()">
+  <a class="skip-link" href="#main-content">{{ 'common.skipToContent' | translate }}</a>
+
+  <app-header [showMenuButton]="isMobile()" (menuToggle)="sidenav.toggle()" />
+
+  <mat-sidenav-container class="shell__container">
+    <mat-sidenav
+      #sidenav
+      class="shell__sidenav"
+      [mode]="isMobile() ? 'over' : 'side'"
+      [opened]="!isMobile()"
+    >
+      <app-sidebar
+        (navigate)="isMobile() && sidenav.close()"
+        (newTask)="openNewTask(); isMobile() && sidenav.close()"
+      />
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <main id="main-content" class="shell__content" tabindex="-1">
+        <router-outlet />
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,41 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.shell__container {
+  flex: 1;
+  background: var(--app-bg);
+}
+
+.shell__sidenav {
+  width: 256px;
+  border-inline-end: 1px solid var(--app-border);
+  background: var(--app-surface);
+}
+
+.shell__content {
+  padding: 24px;
+  outline: none;
+
+  @media (max-width: 599.98px) {
+    padding: 16px;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: 8px;
+  top: -48px;
+  z-index: 1000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: var(--app-primary);
+  color: #fff;
+  transition: top 0.2s;
+
+  &:focus {
+    top: 8px;
+  }
+}

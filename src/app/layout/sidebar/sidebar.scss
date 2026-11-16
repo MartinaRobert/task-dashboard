@@ -1,0 +1,48 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 24px 16px;
+}
+
+.sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding-inline: 16px;
+  border-radius: 6px;
+  color: var(--app-text);
+  text-decoration: none;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+
+  &:hover {
+    background: var(--app-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--app-primary);
+    outline-offset: 2px;
+  }
+}
+
+.sidebar__link--active,
+.sidebar__link--active:hover {
+  background: var(--app-primary);
+  color: #fff;
+}
+
+.sidebar__new {
+  width: 100%;
+}

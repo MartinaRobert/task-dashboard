@@ -1,0 +1,22 @@
+<nav class="sidebar" [attr.aria-label]="'nav.label' | translate">
+  <ul class="sidebar__list">
+    @for (item of items; track item.path) {
+      <li>
+        <a
+          class="sidebar__link"
+          [routerLink]="item.path"
+          routerLinkActive="sidebar__link--active"
+          ariaCurrentWhenActive="page"
+          (click)="navigate.emit()"
+        >
+          <span aria-hidden="true">{{ item.icon }}</span>
+          {{ item.labelKey | translate }}
+        </a>
+      </li>
+    }
+  </ul>
+
+  <button mat-flat-button type="button" class="sidebar__new" (click)="newTask.emit()">
+    + {{ 'tasks.newTask' | translate }}
+  </button>
+</nav>

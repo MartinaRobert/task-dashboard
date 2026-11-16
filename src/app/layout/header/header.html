@@ -1,0 +1,57 @@
+<header class="header">
+  @if (showMenuButton()) {
+    <button
+      mat-icon-button
+      type="button"
+      [attr.aria-label]="'header.openMenu' | translate"
+      (click)="menuToggle.emit()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  }
+
+  <a class="header__brand" routerLink="/dashboard">
+    <span class="header__logo" aria-hidden="true">▪</span>
+    <span class="header__title">{{ 'app.title' | translate }}</span>
+  </a>
+
+  <div class="header__search" role="search">
+    <mat-icon class="header__search-icon" aria-hidden="true">search</mat-icon>
+    <input
+      type="search"
+      [formControl]="searchControl"
+      [placeholder]="'header.searchPlaceholder' | translate"
+      [attr.aria-label]="'header.searchPlaceholder' | translate"
+    />
+  </div>
+
+  <div class="header__actions">
+    <button
+      mat-button
+      type="button"
+      class="header__lang"
+      [attr.aria-label]="'header.switchLanguage' | translate"
+      (click)="language.toggle()"
+    >
+      {{ language.current() === 'en' ? 'عربي' : 'EN' }}
+    </button>
+
+    <button
+      mat-icon-button
+      type="button"
+      [matTooltip]="'header.overdueNotifications' | translate: { count: overdueCount() }"
+      [attr.aria-label]="'header.overdueNotifications' | translate: { count: overdueCount() }"
+    >
+      <span
+        class="header__bell"
+        aria-hidden="true"
+        [matBadge]="overdueCount() || null"
+        matBadgeColor="warn"
+        matBadgeSize="small"
+        >🔔</span
+      >
+    </button>
+
+    <span class="header__avatar" aria-label="John Doe" role="img">JD</span>
+  </div>
+</header>
