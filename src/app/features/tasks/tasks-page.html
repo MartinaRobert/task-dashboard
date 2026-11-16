@@ -1,0 +1,22 @@
+<h1 class="page-title">{{ 'nav.tasks' | translate }}</h1>
+
+@if (store.hasError()) {
+  <app-error-state (retry)="store.reload()" />
+} @else if (store.isLoading()) {
+  <app-skeleton height="64px" />
+  <app-skeleton class="block-gap" height="420px" />
+} @else {
+  <app-filter-bar
+    [(status)]="store.statusFilter"
+    [(priority)]="store.priorityFilter"
+    [(assignee)]="store.assigneeFilter"
+    [users]="store.users()"
+    (newTask)="taskDialog.openCreate()"
+  />
+  <app-task-table
+    class="block-gap"
+    [tasks]="store.filteredTasks()"
+    (edit)="taskDialog.openEdit($event)"
+    (delete)="taskDialog.confirmDelete($event)"
+  />
+}

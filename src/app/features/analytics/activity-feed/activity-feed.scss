@@ -1,0 +1,31 @@
+.feed {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feed__item {
+  display: flex;
+  gap: 12px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--app-border);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.feed__icon {
+  font-size: 18px;
+}
+
+.feed__text {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.feed__time,
+.feed__empty {
+  color: var(--app-text-muted);
+  font-size: 12px;
+}

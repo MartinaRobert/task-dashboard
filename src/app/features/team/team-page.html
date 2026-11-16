@@ -1,0 +1,40 @@
+<h1 class="page-title">{{ 'nav.team' | translate }}</h1>
+
+@if (store.usersResource.error()) {
+  <app-error-state (retry)="store.usersResource.reload()" />
+} @else if (store.usersResource.isLoading()) {
+  <div class="team">
+    @for (item of skeletons; track item) {
+      <app-skeleton height="190px" />
+    }
+  </div>
+} @else {
+  <ul class="team">
+    @for (member of members(); track member.id) {
+      <li class="member" animate.enter="card-enter">
+        <span class="avatar avatar--large" aria-hidden="true">{{ member.avatar }}</span>
+        <h2 class="member__name">{{ member.name }}</h2>
+        <a class="member__email" [href]="'mailto:' + member.email">{{ member.email }}</a>
+
+        <dl class="member__stats">
+          <div>
+            <dt>{{ 'team.open' | translate }}</dt>
+            <dd>{{ member.open }}</dd>
+          </div>
+          <div>
+            <dt>{{ 'team.done' | translate }}</dt>
+            <dd>{{ member.done }}</dd>
+          </div>
+          <div [class.member__overdue]="member.overdue > 0">
+            <dt>{{ 'stats.overdue' | translate }}</dt>
+            <dd>{{ member.overdue }}</dd>
+          </div>
+        </dl>
+
+        <button mat-stroked-button type="button" (click)="viewTasks(member.id)">
+          {{ 'team.viewTasks' | translate }}
+        </button>
+      </li>
+    }
+  </ul>
+}

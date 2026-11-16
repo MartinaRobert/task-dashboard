@@ -1,0 +1,24 @@
+<section class="panel" aria-labelledby="activity-title">
+  <h2 id="activity-title" class="panel__title">{{ 'analytics.recentActivity' | translate }}</h2>
+
+  <ol class="feed">
+    @for (activity of activities(); track activity.id) {
+      <li class="feed__item" animate.enter="card-enter">
+        <span class="feed__icon" aria-hidden="true">{{ icons[activity.type] }}</span>
+        <div>
+          <p class="feed__text">
+            {{
+              'activity.' + activity.type
+                | translate: { user: activity.userName, task: activity.taskTitle }
+            }}
+          </p>
+          <time class="feed__time" [attr.datetime]="activity.date">
+            {{ activity.date | timeAgo: lang() }}
+          </time>
+        </div>
+      </li>
+    } @empty {
+      <li class="feed__empty">{{ 'analytics.noActivity' | translate }}</li>
+    }
+  </ol>
+</section>

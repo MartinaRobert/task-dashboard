@@ -1,0 +1,25 @@
+<h1 class="page-title">{{ 'nav.analytics' | translate }}</h1>
+
+@if (store.hasError()) {
+  <app-error-state (retry)="store.reload()" />
+} @else if (store.isLoading()) {
+  <div class="grid">
+    <app-skeleton height="340px" />
+    <app-skeleton height="340px" />
+    <app-skeleton class="grid__full" height="300px" />
+  </div>
+} @else {
+  <div class="grid">
+    <app-task-chart
+      [title]="labels()['analytics.byPriority']"
+      type="doughnut"
+      [slices]="prioritySlices()"
+    />
+    <app-task-chart [title]="labels()['analytics.byStatus']" type="bar" [slices]="statusSlices()" />
+    <app-activity-feed
+      class="grid__full"
+      [activities]="store.activities()"
+      [lang]="language.current()"
+    />
+  </div>
+}

@@ -1,0 +1,43 @@
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: var(--app-surface);
+}
+
+table {
+  width: 100%;
+  min-width: 760px;
+}
+
+td.mat-mdc-cell:not(:first-child) {
+  white-space: nowrap;
+}
+
+.muted {
+  margin-top: 2px;
+  color: var(--app-text-muted);
+  font-size: 12px;
+}
+
+.overdue {
+  color: var(--app-red);
+  font-weight: 500;
+}
+
+.assignee {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions {
+  white-space: nowrap;
+  text-align: end;
+}
+
+.empty {
+  padding: 32px;
+  color: var(--app-text-muted);
+  text-align: center;
+}

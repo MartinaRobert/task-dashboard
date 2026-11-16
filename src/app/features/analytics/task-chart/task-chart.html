@@ -1,0 +1,11 @@
+<section class="panel" [attr.aria-label]="title()">
+  <h2 class="panel__title">{{ title() }}</h2>
+  <div class="chart">
+    <canvas baseChart [type]="type()" [data]="data()" [options]="options()"></canvas>
+  </div>
+  <ul class="visually-hidden">
+    @for (slice of slices(); track slice.label) {
+      <li>{{ slice.label }}: {{ slice.value }}</li>
+    }
+  </ul>
+</section>
