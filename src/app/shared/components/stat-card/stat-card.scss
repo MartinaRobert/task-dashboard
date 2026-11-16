@@ -1,0 +1,39 @@
+.stat {
+  height: 100%;
+  padding: 24px;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: var(--app-surface);
+  box-sizing: border-box;
+
+  @media (max-width: 599.98px) {
+    padding: 16px;
+  }
+}
+
+.stat__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--app-text-muted);
+}
+
+.stat__value {
+  margin: 16px 0 12px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.stat__change {
+  margin: 0;
+  font-size: 12px;
+  color: var(--app-text-muted);
+}
+
+.stat__change--positive {
+  color: var(--app-green);
+}
+
+.stat__change--negative {
+  color: var(--app-red);
+}

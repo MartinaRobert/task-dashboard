@@ -1,0 +1,66 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: var(--app-surface);
+}
+
+.filters__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.filters__tab {
+  height: 36px;
+  padding-inline: 16px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--app-text);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+
+  &:hover {
+    background: var(--app-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--app-primary);
+    outline-offset: 2px;
+  }
+}
+
+.filters__tab--active,
+.filters__tab--active:hover {
+  background: var(--app-primary);
+  color: #fff;
+}
+
+.filters__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters__select {
+  width: 170px;
+}
+
+@media (max-width: 599.98px) {
+  .filters__actions,
+  .filters__select,
+  .filters__actions button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="error" role="alert">
+  <span class="error__icon" aria-hidden="true">⚠️</span>
+  <h2 class="error__title">{{ 'errors.loadTitle' | translate }}</h2>
+  <p>{{ 'errors.loadMessage' | translate }}</p>
+  <button mat-flat-button type="button" (click)="retry.emit()">
+    {{ 'common.retry' | translate }}
+  </button>
+</div>

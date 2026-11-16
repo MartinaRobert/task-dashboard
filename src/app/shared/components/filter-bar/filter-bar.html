@@ -1,0 +1,41 @@
+<div class="filters">
+  <div class="filters__tabs" role="group" [attr.aria-label]="'filters.status' | translate">
+    @for (item of statuses; track item) {
+      <button
+        type="button"
+        class="filters__tab"
+        [class.filters__tab--active]="status() === item"
+        [attr.aria-pressed]="status() === item"
+        (click)="status.set(item)"
+      >
+        {{ (item === 'all' ? 'filters.all' : 'status.' + item) | translate }}
+      </button>
+    }
+  </div>
+
+  <div class="filters__actions">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="filters__select">
+      <mat-label>{{ 'filters.assignee' | translate }}</mat-label>
+      <mat-select [value]="assignee()" (valueChange)="assignee.set($event)">
+        <mat-option value="all">{{ 'filters.allAssignees' | translate }}</mat-option>
+        @for (user of users(); track user.id) {
+          <mat-option [value]="user.id">{{ user.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="filters__select">
+      <mat-label>{{ 'filters.priority' | translate }}</mat-label>
+      <mat-select [value]="priority()" (valueChange)="priority.set($event)">
+        <mat-option value="all">{{ 'filters.allPriorities' | translate }}</mat-option>
+        @for (item of priorities; track item) {
+          <mat-option [value]="item">{{ 'priority.' + item | translate }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button type="button" (click)="newTask.emit()">
+      + {{ 'tasks.newTask' | translate }}
+    </button>
+  </div>
+</div>

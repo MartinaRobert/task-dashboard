@@ -1,0 +1,60 @@
+<article
+  class="card"
+  [class]="'card--' + task().status"
+  [class.card--overdue]="task().isOverdue"
+  [attr.aria-label]="task().title"
+>
+  <div class="card__top">
+    <span class="badge" [class]="'badge--' + task().priority">
+      {{ 'priority.' + task().priority | translate }}
+    </span>
+
+    <button
+      mat-icon-button
+      type="button"
+      class="card__menu"
+      [matMenuTriggerFor]="menu"
+      [attr.aria-label]="'tasks.actionsFor' | translate: { title: task().title }"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+
+  <h3 class="card__title">{{ task().title }}</h3>
+  <p class="card__description">{{ task().description }}</p>
+
+  <p class="card__due" [class.card__due--overdue]="task().isOverdue">
+    <span aria-hidden="true">{{ due().icon }}</span>
+    {{ due().key | translate: due().params }}
+  </p>
+
+  @if (task().tags.length) {
+    <ul class="card__tags" [attr.aria-label]="'tasks.tags' | translate">
+      @for (tag of task().tags; track tag) {
+        <li>{{ tag }}</li>
+      }
+    </ul>
+  }
+
+  <footer class="card__footer">
+    <span class="avatar" aria-hidden="true">{{ task().assignee.avatar }}</span>
+    <span>&#64;{{ firstName() }}</span>
+  </footer>
+</article>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item type="button" (click)="edit.emit(task())">
+    <mat-icon>edit</mat-icon>
+    {{ 'common.edit' | translate }}
+  </button>
+  @for (status of otherStatuses(); track status) {
+    <button mat-menu-item type="button" (click)="statusChange.emit({ task: task(), status })">
+      <mat-icon>arrow_forward</mat-icon>
+      {{ 'tasks.moveTo' | translate: { status: ('status.' + status | translate) } }}
+    </button>
+  }
+  <button mat-menu-item type="button" class="danger" (click)="delete.emit(task())">
+    <mat-icon>delete</mat-icon>
+    {{ 'common.delete' | translate }}
+  </button>
+</mat-menu>

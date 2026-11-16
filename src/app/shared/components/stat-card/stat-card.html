@@ -1,0 +1,15 @@
+<section class="stat" [attr.aria-label]="stat().titleKey | translate">
+  <h2 class="stat__title">
+    <span aria-hidden="true">{{ stat().icon }}</span>
+    {{ stat().titleKey | translate }}
+  </h2>
+  <p class="stat__value">{{ stat().value }}</p>
+  @if (stat().changeLabelKey) {
+    <p class="stat__change" [class]="'stat__change--' + stat().changeType">
+      @if (stat().change !== '0') {
+        {{ stat().change }}
+      }
+      {{ stat().changeLabelKey | translate }}
+    </p>
+  }
+</section>

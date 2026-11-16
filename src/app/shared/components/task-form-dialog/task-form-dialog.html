@@ -1,0 +1,117 @@
+<h2 mat-dialog-title>{{ (isEdit ? 'form.editTitle' : 'form.createTitle') | translate }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <mat-dialog-content class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'form.title' | translate }}</mat-label>
+      <input matInput formControlName="title" required cdkFocusInitial />
+      @let titleError = getErrorMessage(form.controls.title.errors);
+      @if (titleError) {
+        <mat-error>{{ titleError.key | translate: titleError.params }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'form.description' | translate }}</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+      <mat-hint align="end">{{ form.controls.description.value.length }} / 300</mat-hint>
+      @let descriptionError = getErrorMessage(form.controls.description.errors);
+      @if (descriptionError) {
+        <mat-error>{{ descriptionError.key | translate: descriptionError.params }}</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="form__row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'form.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{ 'status.' + status | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'form.priority' | translate }}</mat-label>
+        <mat-select formControlName="priority">
+          @for (priority of priorities; track priority) {
+            <mat-option [value]="priority">{{ 'priority.' + priority | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form__row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'form.dueDate' | translate }}</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dueDate" required />
+        <mat-datepicker-toggle matIconSuffix [for]="picker" />
+        <mat-datepicker #picker />
+        @let dueDateError = getErrorMessage(form.controls.dueDate.errors);
+        @if (dueDateError) {
+          <mat-error>{{ dueDateError.key | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'form.assignee' | translate }}</mat-label>
+        <mat-select formControlName="assigneeId" required>
+          @for (user of data.users; track user.id) {
+            <mat-option [value]="user.id">{{ user.name }}</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.assigneeId.hasError('required')) {
+          <mat-error>{{ 'validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'form.tags' | translate }}</mat-label>
+      <input
+        matInput
+        [formControl]="tagInput"
+        [placeholder]="'form.tagsPlaceholder' | translate"
+        (keydown.enter)="onTagKeydown($event)"
+      />
+      <button
+        mat-icon-button
+        matIconSuffix
+        type="button"
+        [attr.aria-label]="'form.addTag' | translate"
+        [disabled]="tags.length >= maxTags"
+        (click)="addTag()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-hint>{{ tags.length }} / {{ maxTags }}</mat-hint>
+    </mat-form-field>
+
+    @if (tags.length) {
+      <mat-chip-set [attr.aria-label]="'form.tags' | translate">
+        @for (tag of tags.controls; track $index) {
+          <mat-chip (removed)="removeTag($index)">
+            {{ tag.value }}
+            <button
+              matChipRemove
+              type="button"
+              [attr.aria-label]="'form.removeTag' | translate: { tag: tag.value }"
+            >
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        }
+      </mat-chip-set>
+    }
+    @if (tags.hasError('duplicateTags')) {
+      <p class="form__error" role="alert">{{ 'validation.duplicateTags' | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" mat-dialog-close>{{ 'common.cancel' | translate }}</button>
+    <button mat-flat-button type="submit">
+      {{ (isEdit ? 'common.save' : 'common.create') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>
