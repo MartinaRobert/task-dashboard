@@ -1,7 +1,9 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { flushInitialData, makeTask, provideTestDeps, TASKS } from '../../testing/test-helpers';
+import { Task, TaskStatus } from '../core/models/task.model';
 import { TaskStore } from '../core/services/task-store';
 import { TaskDialogService } from '../shared/services/task-dialog.service';
 import { ActivityFeed } from './analytics/activity-feed/activity-feed';
@@ -58,6 +60,31 @@ describe('feature pages', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.textContent).toContain('tasks.empty');
     expect(fixture.nativeElement.querySelectorAll('app-task-card').length).toBe(1);
+  });
+
+  it('TaskBoard emits a status change when a card is dropped in another column', () => {
+    const fixture = TestBed.createComponent(TaskBoard);
+    const task = makeTask();
+    fixture.componentRef.setInput('columns', [{ status: 'todo', tasks: [task] }]);
+    fixture.detectChanges();
+    const emitted: { task: Task; status: TaskStatus }[] = [];
+    fixture.componentInstance.statusChange.subscribe((e) => emitted.push(e));
+
+    const todoList = { data: 'todo' };
+    const doneList = { data: 'done' };
+    const drop = (from: object, to: object) =>
+      ({ previousContainer: from, container: to, item: { data: task } }) as unknown as CdkDragDrop<
+        TaskStatus,
+        TaskStatus,
+        Task
+      >;
+
+    fixture.componentInstance.onDrop(drop(todoList, todoList));
+    expect(emitted).toEqual([]);
+
+    fixture.componentInstance.onDrop(drop(todoList, doneList));
+    expect(emitted).toEqual([{ task, status: 'done' }]);
+    expect(fixture.nativeElement.querySelectorAll('[cdkdroplist], .cdk-drop-list').length).toBe(1);
   });
 
   it('AnalyticsPage builds chart data from the tasks', async () => {

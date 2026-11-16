@@ -51,6 +51,22 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-height: 80px;
+  border-radius: 8px;
+  transition:
+    background-color 0.2s,
+    outline-color 0.2s;
+  outline: 2px dashed transparent;
+  outline-offset: 4px;
+}
+
+.column__list.cdk-drop-list-receiving {
+  outline-color: var(--app-border);
+}
+
+.column__list.cdk-drop-list-dragging {
+  background: var(--app-hover);
+  outline-color: var(--app-primary);
 }
 
 .column__empty {

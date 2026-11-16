@@ -147,6 +147,25 @@ a {
   }
 }
 
+// Drag & drop (the preview is added to <body>, so these styles are global)
+.cdk-drag {
+  cursor: grab;
+}
+
+.cdk-drag-preview {
+  box-shadow: 0 12px 28px rgb(0 0 0 / 18%);
+  border-radius: 8px;
+  cursor: grabbing;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.35;
+}
+
+.cdk-drag-animating {
+  transition: transform 0.2s ease;
+}
+
 // Used with animate.enter="card-enter"
 .card-enter {
   animation: card-enter 0.25s ease-out;

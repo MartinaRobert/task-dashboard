@@ -1,4 +1,4 @@
-<div class="board" [style.--columns]="columns().length">
+<div class="board" cdkDropListGroup [style.--columns]="columns().length">
   @for (column of columns(); track column.status) {
     <section class="column" [attr.aria-labelledby]="'column-' + column.status">
       <header class="column__header">
@@ -11,9 +11,18 @@
         </span>
       </header>
 
-      <div class="column__list">
+      <div
+        class="column__list"
+        cdkDropList
+        cdkDropListSortingDisabled
+        [cdkDropListData]="column.status"
+        (cdkDropListDropped)="onDrop($event)"
+      >
         @for (task of column.tasks; track task.id) {
           <app-task-card
+            cdkDrag
+            [cdkDragData]="task"
+            [cdkDragStartDelay]="dragDelay"
             animate.enter="card-enter"
             [task]="task"
             (edit)="edit.emit($event)"
