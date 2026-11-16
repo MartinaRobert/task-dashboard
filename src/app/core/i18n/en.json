@@ -1,0 +1,129 @@
+{
+  "app": { "title": "Task Manager" },
+  "common": {
+    "close": "Close",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "create": "Create",
+    "retry": "Try again",
+    "loading": "Loading",
+    "skipToContent": "Skip to main content",
+    "actions": "Actions",
+    "comingSoon": "This page is coming soon."
+  },
+  "header": {
+    "openMenu": "Open menu",
+    "searchPlaceholder": "Search tasks...",
+    "switchLanguage": "Switch language",
+    "overdueNotifications": "{{count}} overdue tasks"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "dashboard": "Dashboard",
+    "tasks": "Tasks",
+    "calendar": "Calendar",
+    "analytics": "Analytics",
+    "team": "Team",
+    "settings": "Settings"
+  },
+  "stats": {
+    "total": "Total Tasks",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "overdue": "Overdue",
+    "thisWeek": "this week",
+    "today": "today",
+    "sameAsYesterday": "Same as yesterday"
+  },
+  "filters": {
+    "status": "Filter by status",
+    "all": "All",
+    "assignee": "Assignee",
+    "allAssignees": "All assignees",
+    "priority": "Priority",
+    "allPriorities": "All priorities"
+  },
+  "status": { "todo": "To Do", "in_progress": "In Progress", "done": "Done" },
+  "priority": { "high": "High", "medium": "Medium", "low": "Low" },
+  "tasks": {
+    "newTask": "New Task",
+    "actionsFor": "Actions for {{title}}",
+    "tags": "Tags",
+    "moveTo": "Move to {{status}}",
+    "count": "{{count}} tasks",
+    "empty": "No tasks found"
+  },
+  "due": {
+    "completed": "Completed",
+    "completedToday": "Completed today",
+    "completedYesterday": "Completed yesterday",
+    "completedDaysAgo": "Completed {{count}} days ago",
+    "overdueOneDay": "Overdue by 1 day",
+    "overdueDays": "Overdue by {{count}} days",
+    "today": "Due today",
+    "tomorrow": "Due tomorrow",
+    "inOneWeek": "Due in 1 week",
+    "inDays": "Due in {{count}} days"
+  },
+  "form": {
+    "createTitle": "New Task",
+    "editTitle": "Edit Task",
+    "title": "Title",
+    "description": "Description",
+    "status": "Status",
+    "priority": "Priority",
+    "dueDate": "Due date",
+    "assignee": "Assignee",
+    "tags": "Tags",
+    "tagsPlaceholder": "Type a tag and press Enter",
+    "addTag": "Add tag",
+    "removeTag": "Remove tag {{tag}}"
+  },
+  "validation": {
+    "required": "This field is required",
+    "blank": "This field cannot be only spaces",
+    "minLength": "Use at least {{count}} characters",
+    "maxLength": "Use at most {{count}} characters",
+    "pastDate": "The due date cannot be in the past",
+    "invalidDate": "Please enter a valid date",
+    "duplicateTags": "Each tag can only be added once",
+    "invalid": "This value is not valid"
+  },
+  "dialog": {
+    "deleteTitle": "Delete task?",
+    "deleteMessage": "\"{{title}}\" will be deleted. This cannot be undone."
+  },
+  "messages": {
+    "created": "Task created",
+    "updated": "Task updated",
+    "deleted": "Task deleted"
+  },
+  "errors": {
+    "network": "Cannot reach the server. Check your connection.",
+    "notFound": "The item was not found.",
+    "server": "The server had a problem. Please try again.",
+    "generic": "Something went wrong.",
+    "loadTitle": "Could not load tasks",
+    "loadMessage": "We tried a few times but the request failed."
+  },
+  "analytics": {
+    "byPriority": "Tasks by priority",
+    "byStatus": "Tasks by status",
+    "recentActivity": "Recent activity",
+    "noActivity": "No activity yet"
+  },
+  "activity": {
+    "created": "{{user}} created \"{{task}}\"",
+    "updated": "\"{{task}}\" was updated",
+    "moved": "\"{{task}}\" changed status",
+    "completed": "{{user}} completed \"{{task}}\"",
+    "deleted": "\"{{task}}\" was deleted"
+  },
+  "team": {
+    "open": "Open",
+    "done": "Done",
+    "viewTasks": "View tasks"
+  }
+}

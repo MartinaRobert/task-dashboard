@@ -1,0 +1,129 @@
+{
+  "app": { "title": "مدير المهام" },
+  "common": {
+    "close": "إغلاق",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "create": "إنشاء",
+    "retry": "حاول مرة أخرى",
+    "loading": "جارٍ التحميل",
+    "skipToContent": "تخطَّ إلى المحتوى الرئيسي",
+    "actions": "الإجراءات",
+    "comingSoon": "هذه الصفحة قريبًا."
+  },
+  "header": {
+    "openMenu": "فتح القائمة",
+    "searchPlaceholder": "ابحث في المهام...",
+    "switchLanguage": "تغيير اللغة",
+    "overdueNotifications": "{{count}} مهام متأخرة"
+  },
+  "nav": {
+    "label": "التنقل الرئيسي",
+    "dashboard": "لوحة التحكم",
+    "tasks": "المهام",
+    "calendar": "التقويم",
+    "analytics": "التحليلات",
+    "team": "الفريق",
+    "settings": "الإعدادات"
+  },
+  "stats": {
+    "total": "إجمالي المهام",
+    "completed": "المكتملة",
+    "inProgress": "قيد التنفيذ",
+    "overdue": "المتأخرة",
+    "thisWeek": "هذا الأسبوع",
+    "today": "اليوم",
+    "sameAsYesterday": "مثل الأمس"
+  },
+  "filters": {
+    "status": "التصفية حسب الحالة",
+    "all": "الكل",
+    "assignee": "المسؤول",
+    "allAssignees": "كل المسؤولين",
+    "priority": "الأولوية",
+    "allPriorities": "كل الأولويات"
+  },
+  "status": { "todo": "للتنفيذ", "in_progress": "قيد التنفيذ", "done": "مكتملة" },
+  "priority": { "high": "عالية", "medium": "متوسطة", "low": "منخفضة" },
+  "tasks": {
+    "newTask": "مهمة جديدة",
+    "actionsFor": "إجراءات المهمة {{title}}",
+    "tags": "الوسوم",
+    "moveTo": "نقل إلى {{status}}",
+    "count": "{{count}} مهام",
+    "empty": "لا توجد مهام"
+  },
+  "due": {
+    "completed": "مكتملة",
+    "completedToday": "اكتملت اليوم",
+    "completedYesterday": "اكتملت أمس",
+    "completedDaysAgo": "اكتملت منذ {{count}} أيام",
+    "overdueOneDay": "متأخرة يومًا واحدًا",
+    "overdueDays": "متأخرة {{count}} أيام",
+    "today": "تستحق اليوم",
+    "tomorrow": "تستحق غدًا",
+    "inOneWeek": "تستحق خلال أسبوع",
+    "inDays": "تستحق خلال {{count}} أيام"
+  },
+  "form": {
+    "createTitle": "مهمة جديدة",
+    "editTitle": "تعديل المهمة",
+    "title": "العنوان",
+    "description": "الوصف",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "dueDate": "تاريخ الاستحقاق",
+    "assignee": "المسؤول",
+    "tags": "الوسوم",
+    "tagsPlaceholder": "اكتب وسمًا واضغط Enter",
+    "addTag": "إضافة وسم",
+    "removeTag": "حذف الوسم {{tag}}"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "blank": "لا يمكن أن يحتوي الحقل على مسافات فقط",
+    "minLength": "استخدم {{count}} أحرف على الأقل",
+    "maxLength": "استخدم {{count}} حرفًا كحد أقصى",
+    "pastDate": "لا يمكن أن يكون تاريخ الاستحقاق في الماضي",
+    "invalidDate": "أدخل تاريخًا صحيحًا",
+    "duplicateTags": "لا يمكن إضافة الوسم نفسه مرتين",
+    "invalid": "هذه القيمة غير صحيحة"
+  },
+  "dialog": {
+    "deleteTitle": "حذف المهمة؟",
+    "deleteMessage": "سيتم حذف \"{{title}}\". لا يمكن التراجع عن ذلك."
+  },
+  "messages": {
+    "created": "تم إنشاء المهمة",
+    "updated": "تم تحديث المهمة",
+    "deleted": "تم حذف المهمة"
+  },
+  "errors": {
+    "network": "تعذر الوصول إلى الخادم. تحقق من الاتصال.",
+    "notFound": "العنصر غير موجود.",
+    "server": "حدثت مشكلة في الخادم. حاول مرة أخرى.",
+    "generic": "حدث خطأ ما.",
+    "loadTitle": "تعذر تحميل المهام",
+    "loadMessage": "حاولنا عدة مرات لكن الطلب فشل."
+  },
+  "analytics": {
+    "byPriority": "المهام حسب الأولوية",
+    "byStatus": "المهام حسب الحالة",
+    "recentActivity": "النشاط الأخير",
+    "noActivity": "لا يوجد نشاط بعد"
+  },
+  "activity": {
+    "created": "أنشأ {{user}} المهمة \"{{task}}\"",
+    "updated": "تم تحديث \"{{task}}\"",
+    "moved": "تغيّرت حالة \"{{task}}\"",
+    "completed": "أكمل {{user}} المهمة \"{{task}}\"",
+    "deleted": "تم حذف \"{{task}}\""
+  },
+  "team": {
+    "open": "مفتوحة",
+    "done": "مكتملة",
+    "viewTasks": "عرض المهام"
+  }
+}
