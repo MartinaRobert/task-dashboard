@@ -1,0 +1,24 @@
+.stats,
+.skeleton-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+
+  @media (max-width: 1279.98px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+.skeleton-board {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 959.98px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-gap {
+  display: block;
+  margin-block: 24px;
+}

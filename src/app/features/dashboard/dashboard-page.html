@@ -1,0 +1,39 @@
+<h1 class="visually-hidden">{{ 'nav.dashboard' | translate }}</h1>
+
+@if (store.hasError()) {
+  <app-error-state (retry)="store.reload()" />
+} @else if (store.isLoading()) {
+  <div class="stats" aria-busy="true" [attr.aria-label]="'common.loading' | translate">
+    @for (item of skeletonStats; track item) {
+      <app-skeleton height="150px" />
+    }
+  </div>
+  <app-skeleton class="page-gap" height="64px" />
+  <div class="skeleton-board">
+    @for (item of skeletonColumns; track item) {
+      <app-skeleton height="480px" />
+    }
+  </div>
+} @else {
+  <div class="stats">
+    @for (stat of store.stats(); track stat.id) {
+      <app-stat-card [stat]="stat" />
+    }
+  </div>
+
+  <app-filter-bar
+    class="page-gap"
+    [(status)]="store.statusFilter"
+    [(priority)]="store.priorityFilter"
+    [(assignee)]="store.assigneeFilter"
+    [users]="store.users()"
+    (newTask)="taskDialog.openCreate()"
+  />
+
+  <app-task-board
+    [columns]="store.columns()"
+    (edit)="taskDialog.openEdit($event)"
+    (delete)="taskDialog.confirmDelete($event)"
+    (statusChange)="onStatusChange($event)"
+  />
+}

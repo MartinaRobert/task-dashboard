@@ -1,0 +1,29 @@
+<div class="board" [style.--columns]="columns().length">
+  @for (column of columns(); track column.status) {
+    <section class="column" [attr.aria-labelledby]="'column-' + column.status">
+      <header class="column__header">
+        <h2 [id]="'column-' + column.status">{{ 'status.' + column.status | translate }}</h2>
+        <span
+          class="column__count"
+          [attr.aria-label]="'tasks.count' | translate: { count: column.tasks.length }"
+        >
+          {{ column.tasks.length }}
+        </span>
+      </header>
+
+      <div class="column__list">
+        @for (task of column.tasks; track task.id) {
+          <app-task-card
+            animate.enter="card-enter"
+            [task]="task"
+            (edit)="edit.emit($event)"
+            (delete)="delete.emit($event)"
+            (statusChange)="statusChange.emit($event)"
+          />
+        } @empty {
+          <p class="column__empty">{{ 'tasks.empty' | translate }}</p>
+        }
+      </div>
+    </section>
+  }
+</div>
