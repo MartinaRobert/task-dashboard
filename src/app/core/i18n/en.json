@@ -88,7 +88,7 @@
     "maxLength": "Use at most {{count}} characters",
     "pastDate": "The due date cannot be in the past",
     "invalidDate": "Please enter a valid date",
-    "duplicateTags": "Each tag can only be added once",
+    "duplicateTags": "No duplicate tags allowed",
     "invalid": "This value is not valid"
   },
   "dialog": {

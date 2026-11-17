@@ -85,6 +85,9 @@
         <mat-icon>add</mat-icon>
       </button>
       <mat-hint>{{ tags.length }} / {{ maxTags }}</mat-hint>
+      @if (tagInput.hasError('duplicateTags')) {
+        <mat-error>{{ 'validation.duplicateTags' | translate }}</mat-error>
+      }
     </mat-form-field>
 
     @if (tags.length) {
@@ -102,9 +105,6 @@
           </mat-chip>
         }
       </mat-chip-set>
-    }
-    @if (tags.hasError('duplicateTags')) {
-      <p class="form__error" role="alert">{{ 'validation.duplicateTags' | translate }}</p>
     }
   </mat-dialog-content>
 

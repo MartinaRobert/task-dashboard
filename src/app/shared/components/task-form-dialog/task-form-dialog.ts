@@ -113,6 +113,12 @@ export class TaskFormDialog {
   addTag(value = this.tagInput.value): void {
     const tag = value.trim();
     if (!tag || this.tags.length >= MAX_TAGS) return;
+    const alreadyAdded = this.tags.value.some((t) => t.toLowerCase() === tag.toLowerCase());
+    if (alreadyAdded) {
+      this.tagInput.setErrors({ duplicateTags: true });
+      this.tagInput.markAsTouched();
+      return;
+    }
     this.tags.push(this.fb.control(tag));
     this.tagInput.reset();
   }

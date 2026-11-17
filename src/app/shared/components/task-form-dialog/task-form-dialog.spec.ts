@@ -76,7 +76,10 @@ describe('TaskFormDialog', () => {
     expect(component.tags.value).toEqual(['b', 'c', 'd', 'e']);
 
     component.addTag('B');
-    expect(component.tags.hasError('duplicateTags')).toBe(true);
+    expect(component.tags.value).toEqual(['b', 'c', 'd', 'e']);
+    expect(component.tagInput.hasError('duplicateTags')).toBe(true);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).toContain('validation.duplicateTags');
   });
 
   it('adds a tag on Enter without submitting the form', () => {
