@@ -50,7 +50,7 @@
   "tasks": {
     "newTask": "مهمة جديدة",
     "actionsFor": "إجراءات المهمة {{title}}",
-    "tags": "الوسوم",
+    "tags": "التصنيفات",
     "moveTo": "نقل إلى {{status}}",
     "count": "{{count}} مهام",
     "empty": "لا توجد مهام"
@@ -76,10 +76,10 @@
     "priority": "الأولوية",
     "dueDate": "تاريخ الاستحقاق",
     "assignee": "المسؤول",
-    "tags": "الوسوم",
-    "tagsPlaceholder": "اكتب وسمًا واضغط Enter",
-    "addTag": "إضافة وسم",
-    "removeTag": "حذف الوسم {{tag}}"
+    "tags": "التصنيفات",
+    "tagsPlaceholder": "اكتب تصنيفًا واضغط Enter",
+    "addTag": "إضافة تصنيف",
+    "removeTag": "حذف التصنيف {{tag}}"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -88,7 +88,7 @@
     "maxLength": "استخدم {{count}} حرفًا كحد أقصى",
     "pastDate": "لا يمكن أن يكون تاريخ الاستحقاق في الماضي",
     "invalidDate": "أدخل تاريخًا صحيحًا",
-    "duplicateTags": "لا يمكن إضافة الوسم نفسه مرتين",
+    "duplicateTags": "لا يمكن إضافة التصنيف نفسه مرتين",
     "invalid": "هذه القيمة غير صحيحة"
   },
   "dialog": {
