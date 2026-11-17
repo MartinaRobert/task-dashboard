@@ -27,15 +27,16 @@
 .skip-link {
   position: absolute;
   inset-inline-start: 8px;
-  top: -48px;
+  top: 8px;
   z-index: 1000;
   padding: 8px 16px;
   border-radius: 6px;
   background: var(--app-primary);
   color: #fff;
-  transition: top 0.2s;
+  transform: translateY(-150%);
+  transition: transform 0.2s;
 
   &:focus {
-    top: 8px;
+    transform: translateY(0);
   }
 }
