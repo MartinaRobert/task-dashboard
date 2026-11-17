@@ -27,10 +27,7 @@ module.exports = defineConfig([
         { type: 'element', prefix: 'app', style: 'kebab-case' },
       ],
       // Project rule: inline templates/styles longer than 10 lines must live in their own .html/.scss file
-      '@angular-eslint/component-max-inline-declarations': [
-        'error',
-        { template: 10, styles: 10 },
-      ],
+      '@angular-eslint/component-max-inline-declarations': ['error', { template: 10, styles: 10 }],
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/prefer-signals': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
