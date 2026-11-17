@@ -46,7 +46,9 @@ It follows the provided Figma design (`docs/design/`) and works on desktop, tabl
 
 ## Getting started
 
-**Requirements:** Node.js 20.19+ (22 LTS recommended) and npm 10+.
+**Requirements:** Node.js 22 (24 LTS recommended) and npm 10+.
+
+Tested on Node 22 and Node 26.
 
 ```bash
 npm install
