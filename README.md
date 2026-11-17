@@ -63,7 +63,7 @@ To refresh the mock data so the dates are relative to today:
 npm run generate-data
 ```
 
-> `.npmrc` sets `legacy-peer-deps=true` because one npm 10 version crashes while resolving the peer dependencies of the test tools. It does not change the installed versions.
+> `.npmrc` sets `legacy-peer-deps=true` so `npm install` works on every npm version; without it, some npm versions fail while resolving the test tools' peer dependencies.
 
 ---
 
