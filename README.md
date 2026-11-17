@@ -1,7 +1,7 @@
 # Task Manager — Angular 21 Task Management Dashboard
 
 A task management dashboard built with **Angular 21**, **Angular Material**, **Signals** and a mock REST API.
-It follows the provided Figma design (`docs/design/`) and works on desktop, tablet and mobile, in **English and Arabic (RTL)**.
+It follows the provided Figma design and works on desktop, tablet and mobile, in **English and Arabic (RTL)**.
 
 ![Dashboard design](docs/design/dashboard.png)
 
@@ -102,7 +102,7 @@ HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 });
 
 ```
 data-fetching/            generate-data.js + generated JSON (the mock database)
-docs/design/              design screenshots
+docs/design/              app screenshot used in this README
 src/app/
   core/                   app-wide code, no UI
     api/                  in-memory backend + TaskApiService (POST / PUT / DELETE)
