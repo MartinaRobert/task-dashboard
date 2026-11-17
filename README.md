@@ -295,7 +295,7 @@ Things found in the provided data and how they are handled:
 | Timezone risk with date-only strings                          | Dates are compared as local calendar days, never with `new Date('YYYY-MM-DD')` (which is UTC)                        |
 | Emoji icons in the statistics data                            | Kept, because the design uses the same emojis                                                                        |
 
-Other edge cases: empty columns and empty table messages, search with no results, title with only spaces, duplicate tags, past due dates, failed saves (the list is left unchanged and an error is shown).
+Other edge cases: empty columns and empty table messages, search with no results, title with only spaces, duplicate tags (blocked with a message), past due dates, failed saves (the list is left unchanged and an error is shown).
 
 ---
 
