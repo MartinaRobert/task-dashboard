@@ -12,6 +12,8 @@ import {
   TASK_STATUSES,
   TaskFormValue,
   TaskStatus,
+  StatisticsResponse,
+  TasksResponse,
 } from '../models/task.model';
 import { isTaskOverdue } from '../utils/date.utils';
 import { NotificationService } from './notification.service';
@@ -51,9 +53,14 @@ export class TaskStore {
   private readonly notification = inject(NotificationService);
 
   // --- Server data (read with httpResource) ---
-  readonly tasksResource = httpResource<Task[]>(() => API_URLS.tasks);
+  // `parse` unwraps the API response, so the rest of the store works with plain arrays
+  readonly tasksResource = httpResource<Task[]>(() => API_URLS.tasks, {
+    parse: (response) => (response as TasksResponse).tasks,
+  });
   readonly usersResource = httpResource<Assignee[]>(() => API_URLS.users);
-  readonly statisticsResource = httpResource<Statistic[]>(() => API_URLS.statistics);
+  readonly statisticsResource = httpResource<Statistic[]>(() => API_URLS.statistics, {
+    parse: (response) => (response as StatisticsResponse).statistics,
+  });
 
   /** Local copy of the tasks. It resets when the server data changes and we edit it after each save. */
   readonly tasks = linkedSignal<Task[]>(() => {

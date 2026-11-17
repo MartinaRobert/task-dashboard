@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { InMemoryDbService, RequestInfo, ResponseOptions } from 'angular-in-memory-web-api';
 import statisticsJson from '../../../../data-fetching/statistics.json';
 import tasksJson from '../../../../data-fetching/tasks.json';
-import { Assignee, Statistic, Task } from '../models/task.model';
-
+import { Assignee, Statistic, StatisticsResponse, Task, TasksResponse } from '../models/task.model';
 /**
  * Fake backend. It reads the generated JSON files and serves them under `api/`.
  * Supports GET, POST, PUT and DELETE like a real REST API.
@@ -14,6 +13,28 @@ export class InMemoryDataService implements InMemoryDbService {
     const tasks = structuredClone(tasksJson.tasks) as Task[];
     const statistics = structuredClone(statisticsJson.statistics) as Statistic[];
     return { tasks, users: getUniqueUsers(tasks), statistics };
+  }
+
+  /**
+   * Wraps list responses
+   * `GET api/tasks` → `{ tasks, meta }` and `GET api/statistics` → `{ statistics, lastUpdated }`.
+   * (The library returns plain arrays by default.)
+   */
+  responseInterceptor(res: ResponseOptions, reqInfo: RequestInfo): ResponseOptions {
+    const isListRequest = reqInfo.method === 'get' && !reqInfo.id;
+    if (!isListRequest) return res;
+
+    const lastUpdated = new Date().toISOString();
+    if (reqInfo.collectionName === 'tasks') {
+      const tasks = res.body as Task[];
+      const body: TasksResponse = { tasks, meta: { totalCount: tasks.length, lastUpdated } };
+      res.body = body;
+    }
+    if (reqInfo.collectionName === 'statistics') {
+      const body: StatisticsResponse = { statistics: res.body as Statistic[], lastUpdated };
+      res.body = body;
+    }
+    return res;
   }
 
   /** Creates ids like `task-018` for new items. */

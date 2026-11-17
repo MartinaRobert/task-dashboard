@@ -1,6 +1,11 @@
 import { HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { flushInitialData, provideTestDeps, settle } from '../../../testing/test-helpers';
+import {
+  flushInitialData,
+  provideTestDeps,
+  settle,
+  tasksResponse,
+} from '../../../testing/test-helpers';
 import { API_URLS } from '../../core/api/task-api.service';
 import { TaskStore } from '../../core/services/task-store';
 import { TaskDialogService } from '../../shared/services/task-dialog.service';
@@ -73,6 +78,6 @@ describe('DashboardPage (integration with TaskStore)', () => {
 
     el.querySelector<HTMLButtonElement>('app-error-state button')?.click();
     TestBed.tick();
-    http.expectOne(API_URLS.tasks).flush([]);
+    http.expectOne(API_URLS.tasks).flush(tasksResponse([]));
   });
 });

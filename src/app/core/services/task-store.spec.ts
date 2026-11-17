@@ -1,6 +1,12 @@
 import { HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { flushInitialData, provideTestDeps, settle, TASKS } from '../../../testing/test-helpers';
+import {
+  flushInitialData,
+  provideTestDeps,
+  settle,
+  TASKS,
+  tasksResponse,
+} from '../../../testing/test-helpers';
 import { API_URLS } from '../api/task-api.service';
 import { TaskFormValue } from '../models/task.model';
 import { NotificationService } from './notification.service';
@@ -60,7 +66,7 @@ describe('TaskStore', () => {
 
     store.reload();
     TestBed.tick();
-    httpMock.expectOne(API_URLS.tasks).flush(TASKS);
+    httpMock.expectOne(API_URLS.tasks).flush(tasksResponse());
     await settle();
     expect(store.hasError()).toBe(false);
   });

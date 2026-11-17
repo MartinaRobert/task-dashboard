@@ -6,7 +6,13 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { API_URLS } from '../app/core/api/task-api.service';
-import { Assignee, Statistic, Task } from '../app/core/models/task.model';
+import {
+  Assignee,
+  Statistic,
+  Task,
+  StatisticsResponse,
+  TasksResponse,
+} from '../app/core/models/task.model';
 import { toDateString } from '../app/core/utils/date.utils';
 
 /** Common providers for component and service tests. Translations return their keys. */
@@ -108,8 +114,21 @@ export async function flushInitialData(
 ): Promise<void> {
   const http = TestBed.inject(HttpTestingController);
   TestBed.tick();
-  http.match(API_URLS.tasks).forEach((req) => req.flush(structuredClone(tasks)));
+  http.match(API_URLS.tasks).forEach((req) => req.flush(tasksResponse(tasks)));
   http.match(API_URLS.users).forEach((req) => req.flush(structuredClone(users)));
-  http.match(API_URLS.statistics).forEach((req) => req.flush(structuredClone(statistics)));
+  http.match(API_URLS.statistics).forEach((req) => req.flush(statisticsResponse(statistics)));
   await settle();
+}
+
+/** Builds the `{ tasks, meta }` response the API returns. */
+export function tasksResponse(tasks: Task[] = TASKS): TasksResponse {
+  return {
+    tasks: structuredClone(tasks),
+    meta: { totalCount: tasks.length, lastUpdated: new Date().toISOString() },
+  };
+}
+
+/** Builds the `{ statistics, lastUpdated }` response the API returns. */
+export function statisticsResponse(statistics: Statistic[] = STATISTICS): StatisticsResponse {
+  return { statistics: structuredClone(statistics), lastUpdated: new Date().toISOString() };
 }

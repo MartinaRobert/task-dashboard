@@ -50,6 +50,13 @@ export interface Statistic {
   color: string;
 }
 
+export interface TasksResponse {
+  tasks: Task[];
+  meta: {
+    totalCount: number;
+    lastUpdated: string;
+  };
+}
 export interface StatisticsResponse {
   statistics: Statistic[];
   lastUpdated: string;
