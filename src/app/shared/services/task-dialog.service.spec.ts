@@ -16,6 +16,12 @@ describe('TaskDialogService', () => {
   // Dialog components are loaded with import(), so we wait until the dialog was opened
   const opened = (times = 1) => vi.waitFor(() => expect(dialog.open).toHaveBeenCalledTimes(times));
 
+  // Load the dialog files once before the tests; the first import can take over a second on slow machines
+  beforeAll(async () => {
+    await import('../components/task-form-dialog/task-form-dialog');
+    await import('../components/confirm-dialog/confirm-dialog');
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
     TestBed.configureTestingModule({
